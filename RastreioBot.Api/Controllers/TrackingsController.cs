@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using RastreioBot.Api.Interfaces;
-using RastreioBot.Api.Models.Api.Users;
+using RastreioBot.Api.Models.Api.Trackings;
 
 namespace RastreioBot.Api.Controllers
 {
@@ -10,40 +10,40 @@ namespace RastreioBot.Api.Controllers
     [Route("api/[controller]")]
     public class TrackingsController : ControllerBase
     {
-        private IUserService _userService;
+        private ITrackingService _service;
 
-        public TrackingsController(IUserService userService)
+        public TrackingsController(ITrackingService service)
         {
-            _userService = userService;
+            _service = service;
         }
 
         [HttpGet]
-        [Route("{token}")]
-        public async Task<ActionResult> Get(string token)
+        [Route("{tracking_number}")]
+        public async Task<ActionResult> Get(string tracking_number)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var user = await _userService.GetUserAsync(token);
+            var tracking = await _service.GetTrackingAsync(tracking_number);
 
-            if (user is null)
+            if (tracking is null)
                 return NotFound();
 
-            return Ok(user);
+            return Ok(tracking);
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] UserApi userApi)
+        public async Task<ActionResult> Post([FromBody] TrackingApi trackingApi)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var user = await _userService.AddUserAsync(userApi);
+            var tracking = await _service.InsertNewTrackingAsync(trackingApi);
 
-            if (user is null)
+            if (tracking is null)
                 return StatusCode((int)HttpStatusCode.InternalServerError);
 
-            return Created($"~api/users/get/{user.Token}", user);
+            return CreatedAtAction(nameof(Get), new { tracking_number = tracking.TrackingNumber }, trackingApi);
         }
     }
 }

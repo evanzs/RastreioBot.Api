@@ -17,7 +17,12 @@ namespace RastreioBot.Api.Services
             _uow = uow;
         }
 
-        public async Task<Tracking> InsertNewTracking(TrackingApi trackingApi)
+        public async Task<Tracking> GetTrackingAsync(string trackingNumber)
+        {
+            return await _repository.GetTrackingByNumber(trackingNumber);
+        }
+
+        public async Task<Tracking> InsertNewTrackingAsync(TrackingApi trackingApi)
         {
             var tracking = trackingApi.ConvertTrackingApiToTracking();
 

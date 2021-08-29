@@ -1,16 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using RastreioBot.Api.Data;
 using RastreioBot.Api.Interfaces;
@@ -33,10 +25,16 @@ namespace RastreioBot.Api
         {
             services.AddDbContext<BotContext>(options => options.UseSqlite("DataSource=RastreioBot.db"));
 
-            //DI
+            #region DI
+
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<ITrackingRepository, TrackingRepository>();
+
+            services.AddScoped<ITrackingService, TrackingService>();
+            services.AddScoped<IUserService, UserService>();
+
+            #endregion DI
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
