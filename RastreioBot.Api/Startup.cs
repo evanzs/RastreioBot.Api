@@ -15,6 +15,7 @@ using Microsoft.OpenApi.Models;
 using RastreioBot.Api.Data;
 using RastreioBot.Api.Interfaces;
 using RastreioBot.Api.Repositories;
+using RastreioBot.Api.Services;
 
 namespace RastreioBot.Api
 {
@@ -35,6 +36,7 @@ namespace RastreioBot.Api
             //DI
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IUserService, UserService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
