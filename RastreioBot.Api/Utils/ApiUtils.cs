@@ -1,4 +1,7 @@
+using System;
+using RastreioBot.Api.Models.Api.Trackings;
 using RastreioBot.Api.Models.Api.Users;
+using RastreioBot.Api.Models.Trackings;
 using RastreioBot.Api.Models.Users;
 
 namespace RastreioBot.Api.Utils
@@ -20,6 +23,18 @@ namespace RastreioBot.Api.Utils
             {
                 Name = user.Name,
                 UserToken = user.Token
+            };
+        }
+
+        public static Tracking ConvertTrackingApiToTracking(this TrackingApi trackingApi)
+        {
+            return new Tracking
+            {
+                TrackingNumber = trackingApi.TrackingNumber,
+                Description = trackingApi.Description,
+                Delivered = false,
+                CreateDate = DateTime.Now,
+                LastUpdate = null
             };
         }
     }

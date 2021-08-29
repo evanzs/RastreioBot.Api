@@ -6,8 +6,8 @@ namespace RastreioBot.Api.Models.Trackings
     [Table("tracking")]
     public class Tracking
     {
-        [Column("tracking_code")]
-        public string TrackingCode { get; set; }
+        [Column("tracking_number")]
+        public string TrackingNumber { get; set; }
 
         [Column("description")]
         public string Description { get; set; }
@@ -19,6 +19,6 @@ namespace RastreioBot.Api.Models.Trackings
         public DateTime CreateDate { get; set; }
 
         [Column("last_update")]
-        public DateTime LastUpdate { get; set; }
+        public DateTime? LastUpdate { get; set; }
     }
 }

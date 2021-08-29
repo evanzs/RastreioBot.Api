@@ -8,29 +8,14 @@ namespace RastreioBot.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class UsersController : ControllerBase
+    public class TrackingsController : ControllerBase
     {
         private IUserService _userService;
 
-        public UsersController(IUserService userService)
+        public TrackingsController(IUserService userService)
         {
             _userService = userService;
         }
-
-        // [HttpGet]
-        // [Route(("{id}"))]
-        // public ActionResult Get(int id)
-        // {
-        //     if (!ModelState.IsValid)
-        //         return BadRequest();
-
-        //     var user = _userService.GetUserAsync(id);
-
-        //     if (user is null)
-        //         return NotFound();
-
-        //     return Ok(user);
-        // }
 
         [HttpGet]
         [Route("{token}")]
