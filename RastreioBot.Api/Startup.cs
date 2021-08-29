@@ -13,6 +13,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using RastreioBot.Api.Data;
+using RastreioBot.Api.Interfaces;
+using RastreioBot.Api.Repositories;
 
 namespace RastreioBot.Api
 {
@@ -29,6 +31,10 @@ namespace RastreioBot.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<BotContext>(options => options.UseSqlite("DataSource=RastreioBot.db"));
+
+            //DI
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<IUserRepository, UserRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
