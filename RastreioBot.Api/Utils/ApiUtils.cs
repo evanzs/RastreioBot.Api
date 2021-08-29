@@ -3,9 +3,9 @@ using RastreioBot.Api.Models.Users;
 
 namespace RastreioBot.Api.Utils
 {
-    public static class RastreioBotUtils
+    public static class ApiUtils
     {
-        public static UserApi ConvertUserToUserApi(User user)
+        public static UserApi ConvertUserToUserApi(this User user)
         {
             return new UserApi
             {
@@ -14,7 +14,7 @@ namespace RastreioBot.Api.Utils
             };
         }
 
-        public static User ConvertUserApiToUser(UserApi user)
+        public static User ConvertUserApiToUser(this UserApi user)
         {
             return new User
             {

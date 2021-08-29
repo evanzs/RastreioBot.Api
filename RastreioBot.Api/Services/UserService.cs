@@ -18,14 +18,14 @@ namespace RastreioBot.Api.Services
 
         public async Task<UserApi> AddUserAsync(UserApi userApi)
         {
-            var user = RastreioBotUtils.ConvertUserApiToUser(userApi);
+            var user = userApi.ConvertUserApiToUser();
             var userInserted = await _repository.InsertUser(user);
 
             if (userInserted is null)
                 return null;
 
             await _uow.Commit();
-            return RastreioBotUtils.ConvertUserToUserApi(userInserted);
+            return user.ConvertUserToUserApi();
         }
 
         public async Task<UserApi> GetUserAsync(int id)
@@ -35,7 +35,7 @@ namespace RastreioBot.Api.Services
             if (user is null)
                 return null;
 
-            return RastreioBotUtils.ConvertUserToUserApi(user);
+            return user.ConvertUserToUserApi();
         }
 
         public async Task<UserApi> GetUserAsync(string token)
@@ -45,7 +45,7 @@ namespace RastreioBot.Api.Services
             if (user is null)
                 return null;
 
-            return RastreioBotUtils.ConvertUserToUserApi(user);
+            return user.ConvertUserToUserApi();
         }
     }
 }

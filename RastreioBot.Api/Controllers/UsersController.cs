@@ -21,28 +21,29 @@ namespace RastreioBot.Api.Controllers
             _userService = userService;
         }
 
-        [HttpGet("{id}")]
-        public ActionResult Get(int id)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest();
+        // [HttpGet]
+        // [Route(("{id}"))]
+        // public ActionResult Get(int id)
+        // {
+        //     if (!ModelState.IsValid)
+        //         return BadRequest();
 
-            var user = _userService.GetUserAsync(id);
+        //     var user = _userService.GetUserAsync(id);
 
-            if (user is null)
-                return NotFound();
+        //     if (user is null)
+        //         return NotFound();
 
-            return Ok(user);
-        }
+        //     return Ok(user);
+        // }
 
         [HttpGet]
         [Route("{token}")]
-        public ActionResult Get(string token)
+        public async Task<ActionResult> Get(string token)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var user = _userService.GetUserAsync(token);
+            var user = await _userService.GetUserAsync(token);
 
             if (user is null)
                 return NotFound();
