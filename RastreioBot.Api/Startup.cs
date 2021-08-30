@@ -28,11 +28,9 @@ namespace RastreioBot.Api
             #region DI
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-            services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<ITrackingRepository, TrackingRepository>();
 
             services.AddScoped<ITrackingService, TrackingService>();
-            services.AddScoped<IUserService, UserService>();
 
             #endregion DI
 
