@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using RastreioBot.Api.Interfaces;
 using RastreioBot.Api.Models.Api.Trackings;
@@ -22,14 +23,26 @@ namespace RastreioBot.Api.Services
             return await _repository.GetTrackingByNumber(trackingNumber);
         }
 
-        public async Task<Tracking> InsertNewTrackingAsync(TrackingApi trackingApi)
+        public async Task<object> InsertNewTrackingAsync(TrackingApi trackingApi)
         {
-            var tracking = trackingApi.ConvertTrackingApiToTracking();
+            try
+            {
+                var tracking = trackingApi.ConvertTrackingApiToTracking();
 
-            await _repository.AddTracking(tracking);
-            await _uow.Commit();
+                await _repository.AddTracking(tracking);
+                await _uow.Commit();
 
-            return tracking;
+                return tracking;
+            }
+            catch (Exception ex)
+            {
+                return new
+                {
+                    message = "Ocorreu um erro ao adicionar o rastreamento.",
+                    error = ex.Message
+                };
+            }
+
         }
     }
 }
