@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace RastreioBot.Api.Models.Trackings
 {
     [Table("tracking")]
-    public class Tracking
+    public class Tracking : BaseEntity
     {
         [Column("tracking_number")]
         public string TrackingNumber { get; set; }

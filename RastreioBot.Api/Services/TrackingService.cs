@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using RastreioBot.Api.Interfaces;
 using RastreioBot.Api.Models.Api.Trackings;
@@ -21,6 +22,11 @@ namespace RastreioBot.Api.Services
         public async Task<Tracking> GetTrackingAsync(string trackingNumber)
         {
             return await _repository.GetTrackingByNumber(trackingNumber);
+        }
+
+        public async Task<List<Tracking>> GetTrackingListAsync()
+        {
+            return await _repository.GetTrackingList();
         }
 
         public async Task<object> InsertNewTrackingAsync(TrackingApi trackingApi)

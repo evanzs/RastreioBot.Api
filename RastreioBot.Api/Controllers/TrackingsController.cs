@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Diagnostics;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using RastreioBot.Api.Interfaces;
@@ -19,13 +20,19 @@ namespace RastreioBot.Api.Controllers
         }
 
         [HttpGet]
+        [Route("")]
         [Route("{tracking_number}")]
-        public async Task<IActionResult> Get(string tracking_number)
+        public async Task<IActionResult> Get(string tracking_number = "")
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var tracking = await _service.GetTrackingAsync(tracking_number);
+            var tracking = new object();
+
+            if (string.IsNullOrWhiteSpace(tracking_number))
+                tracking = await Task.Factory.StartNew(() => _service.GetTrackingListAsync()).Result;
+            else
+                tracking = await Task.Factory.StartNew(() => _service.GetTrackingAsync(tracking_number)).Result;
 
             if (tracking is null)
                 return NotFound();
@@ -39,7 +46,7 @@ namespace RastreioBot.Api.Controllers
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var tracking = await _service.InsertNewTrackingAsync(trackingApi);
+            var tracking = await Task.Factory.StartNew(() => _service.InsertNewTrackingAsync(trackingApi)).Result;
 
             var statusCode = (int)HttpStatusCode.Created;
 
