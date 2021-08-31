@@ -9,5 +9,6 @@ namespace RastreioBot.Api.Interfaces
         Task<Tracking> GetTrackingByNumber(string trackingNumber);
         Task<List<Tracking>> GetTrackingList();
         Task<Tracking> AddTracking(Tracking tracking);
+        Task<List<Tracking>> AddTrackingList(List<Tracking> trackings);
     }
 }

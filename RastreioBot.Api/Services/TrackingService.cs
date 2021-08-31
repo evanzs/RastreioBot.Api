@@ -38,7 +38,7 @@ namespace RastreioBot.Api.Services
                 await _repository.AddTracking(tracking);
                 await _uow.Commit();
 
-                return tracking;
+                return trackingApi;
             }
             catch (Exception ex)
             {
@@ -48,7 +48,27 @@ namespace RastreioBot.Api.Services
                     error = ex.Message
                 };
             }
+        }
 
+        public async Task<object> InsertNewTrackingListAsync(List<TrackingApi> trackingApiList)
+        {
+            try
+            {
+                var trackings = trackingApiList.ConvertTrackingApiListToTrackingList();
+
+                await _repository.AddTrackingList(trackings);
+                await _uow.Commit();
+
+                return trackingApiList;
+            }
+            catch (Exception ex)
+            {
+                return new
+                {
+                    message = "Ocorreu um erro ao adicionar os rastreamentos.",
+                    error = ex.Message
+                };
+            }
         }
     }
 }

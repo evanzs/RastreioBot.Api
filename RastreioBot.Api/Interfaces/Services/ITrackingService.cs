@@ -8,6 +8,7 @@ namespace RastreioBot.Api.Interfaces
     public interface ITrackingService
     {
         Task<object> InsertNewTrackingAsync(TrackingApi trackingApi);
+        Task<object> InsertNewTrackingListAsync(List<TrackingApi> trackingApiList);
         Task<Tracking> GetTrackingAsync(string trackingNumber);
         Task<List<Tracking>> GetTrackingListAsync();
     }

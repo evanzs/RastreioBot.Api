@@ -22,6 +22,12 @@ namespace RastreioBot.Api.Repositories
             return tracking;
         }
 
+        public async Task<List<Tracking>> AddTrackingList(List<Tracking> trackings)
+        {
+            await _context.Trackings.AddRangeAsync(trackings);
+            return trackings;
+        }
+
         public async Task<Tracking> GetTrackingByNumber(string trackingNumber)
             => await _context.Trackings.FirstOrDefaultAsync(t => t.TrackingNumber.Equals(trackingNumber));
 

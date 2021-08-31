@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -41,17 +42,17 @@ namespace RastreioBot.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] TrackingApi trackingApi)
+        public async Task<IActionResult> Post([FromBody] List<TrackingApi> trackingApiList)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var tracking = await Task.Factory.StartNew(() => _service.InsertNewTrackingAsync(trackingApi)).Result;
+            var tracking = await Task.Factory.StartNew(() => _service.InsertNewTrackingListAsync(trackingApiList)).Result;
 
-            var statusCode = (int)HttpStatusCode.Created;
+            var statusCode = (int)HttpStatusCode.InternalServerError;
 
-            if (tracking is not Tracking)
-                statusCode = (int)HttpStatusCode.InternalServerError;
+            if (tracking is List<TrackingApi>)
+                statusCode = (int)HttpStatusCode.Created;
 
             return StatusCode(statusCode, tracking);
         }
