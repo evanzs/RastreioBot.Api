@@ -37,5 +37,10 @@ namespace RastreioBot.Api.Utils
 
             return trackingList;
         }
+
+        public static void ConvertTrackingSearchListToXml(this List<string> trackingList)
+        {
+
+        }
     }
 }
