@@ -41,7 +41,7 @@ namespace RastreioBot.Api.Utils
 
         public static string ConvertTrackingSearchListToXml(this List<string> trackingList)
         {
-            using (var reader = new StreamReader(Directory.GetCurrentDirectory() + @"\Content\xml.xml"))
+            using (var reader = new StreamReader(Directory.GetCurrentDirectory() + @"\Content\xml_file.xml"))
             {
                 var trackingString = string.Empty;
 

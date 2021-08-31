@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using RastreioBot.Api.Data;
 using RastreioBot.Api.Interfaces;
+using RastreioBot.Api.Interfaces.Services;
 using RastreioBot.Api.Repositories;
 using RastreioBot.Api.Services;
 
@@ -32,6 +33,7 @@ namespace RastreioBot.Api
             services.AddTransient<ITrackingRepository, TrackingRepository>();
 
             services.AddScoped<ITrackingService, TrackingService>();
+            services.AddScoped<ICorreiosService, CorreiosService>();
 
             #endregion DI
 
