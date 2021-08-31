@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Net;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using RastreioBot.Api.Interfaces;
 using RastreioBot.Api.Interfaces.Services;
 using RastreioBot.Api.Models.Api.Trackings;
+using RastreioBot.Api.Models.Trackings;
 
 namespace RastreioBot.Api.Controllers
 {
@@ -31,12 +33,12 @@ namespace RastreioBot.Api.Controllers
 
             var tracking = new object();
 
-            if (string.IsNullOrWhiteSpace(tracking_number))
-                tracking = await Task.Factory.StartNew(() => _trackingService.GetTrackingListAsync()).Result;
+            if (tracking_number.IsNullOrWhiteSpace())
+                tracking = GetTrackingListAsync();
             else
                 tracking = await Task.Factory.StartNew(() => _trackingService.GetTrackingAsync(tracking_number)).Result;
 
-            if (tracking is null)
+            if (tracking.IsNull())
                 return NotFound();
 
             return Ok(tracking);
@@ -65,14 +67,22 @@ namespace RastreioBot.Api.Controllers
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var tracking = await Task.Factory.StartNew(() => _correiosService.GetTrackings(trac)).Result;
+            var trackings = GetTrackingListAsync().Result;
 
-            var statusCode = (int)HttpStatusCode.InternalServerError;
+            if (trackings.IsNull())
+                return NotFound();
 
-            if (tracking is List<TrackingApi>)
-                statusCode = (int)HttpStatusCode.Created;
+            var trackingNumbers = (trackings as List<Tracking>).Select(t => t.TrackingNumber).ToList();
 
-            return StatusCode(statusCode, tracking);
+            var result = await Task.Factory.StartNew(() => _correiosService.GetTrackings(trackingNumbers)).Result;
+
+            // if (tracking is List<TrackingApi>)
+            //     statusCode = (int)HttpStatusCode.Created;
+
+            return Ok(result);
         }
+
+        private async Task<object> GetTrackingListAsync()
+            => await Task.Factory.StartNew(() => _trackingService.GetTrackingListAsync()).Result;
     }
 }

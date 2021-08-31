@@ -1,20 +1,22 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using RastreioBot.Api.Interfaces.Services;
 using RastreioBot.Api.Models.Errors;
+using RastreioBot.Api.Utils;
 
 namespace RastreioBot.Api.Services
 {
     public class CorreiosService : ICorreiosService
     {
-        public async Task<object> GetTrackings(string xmlRequest)
+        public async Task<object> GetTrackings(List<string> trackings)
         {
             try
             {
-                var response = await ExecuteRequest(xmlRequest);
+                var response = await ExecuteRequest(trackings.ConvertTrackingSearchListToXml());
 
                 if (response.StatusCode.Equals(HttpStatusCode.OK))
                 {

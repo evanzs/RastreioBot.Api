@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using RastreioBot.Api.Models.Api.Trackings;
 using RastreioBot.Api.Models.Trackings;
 
@@ -38,9 +39,22 @@ namespace RastreioBot.Api.Utils
             return trackingList;
         }
 
-        public static void ConvertTrackingSearchListToXml(this List<string> trackingList)
+        public static string ConvertTrackingSearchListToXml(this List<string> trackingList)
         {
+            using (var reader = new StreamReader(Directory.GetCurrentDirectory() + @"\Content\xml.xml"))
+            {
+                var trackingString = string.Empty;
 
+                for (int i = 0; i < trackingList.Count; i++)
+                {
+                    trackingString += trackingList[i];
+
+                    if (!i.Equals(trackingList.Count))
+                        trackingString += ",";
+                }
+
+                return reader.ReadToEnd().Replace("@tracking_code_list", trackingString);
+            }
         }
     }
 }
