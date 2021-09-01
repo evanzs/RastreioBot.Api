@@ -9,7 +9,7 @@ using RastreioBot.Api.Data;
 namespace RastreioBot.Api.Migrations
 {
     [DbContext(typeof(BotContext))]
-    [Migration("20210830222814_migration")]
+    [Migration("20210901220136_migration")]
     partial class migration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,10 @@ namespace RastreioBot.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER")
                         .HasColumnName("id");
+
+                    b.Property<string>("ChatId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("chat_id");
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("TEXT")

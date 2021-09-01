@@ -15,6 +15,7 @@ namespace RastreioBot.Api.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     tracking_number = table.Column<string>(type: "TEXT", nullable: true),
                     description = table.Column<string>(type: "TEXT", nullable: true),
+                    chat_id = table.Column<string>(type: "TEXT", nullable: true),
                     delivered = table.Column<bool>(type: "INTEGER", nullable: false),
                     create_date = table.Column<DateTime>(type: "TEXT", nullable: false),
                     last_update = table.Column<DateTime>(type: "TEXT", nullable: true)

@@ -23,6 +23,10 @@ namespace RastreioBot.Api.Migrations
                         .HasColumnType("INTEGER")
                         .HasColumnName("id");
 
+                    b.Property<string>("ChatId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("chat_id");
+
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("TEXT")
                         .HasColumnName("create_date");

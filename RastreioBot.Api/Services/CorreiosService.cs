@@ -26,9 +26,9 @@ namespace RastreioBot.Api.Services
 
                 return null;
             }
-            catch (Exception ex)
+            catch
             {
-                return new ErrorResponse("Ocorreu um erro ao buscar os rastreamentos.", ex.Message);
+                return new ErrorResponse("Ocorreu um erro ao buscar os rastreamentos.");
             }
         }
 
@@ -52,9 +52,9 @@ namespace RastreioBot.Api.Services
 
                 return (HttpWebResponse)await request.GetResponseAsync();
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                throw;
             }
         }
     }

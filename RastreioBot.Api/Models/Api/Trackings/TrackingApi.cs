@@ -11,6 +11,10 @@ namespace RastreioBot.Api.Models.Api.Trackings
         public string TrackingNumber { get; set; }
 
         [JsonPropertyName("description")]
+        [MaxLength(30)]
         public string Description { get; set; }
+
+        [JsonPropertyName("chat_id")]
+        public string ChatId { get; set; }
     }
 }

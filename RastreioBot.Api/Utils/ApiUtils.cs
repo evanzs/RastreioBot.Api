@@ -14,9 +14,10 @@ namespace RastreioBot.Api.Utils
             {
                 TrackingNumber = trackingApi.TrackingNumber,
                 Description = trackingApi.Description,
-                Delivered = false,
+                ChatId = trackingApi.ChatId,
                 CreateDate = DateTime.Now,
-                LastUpdate = null
+                LastUpdate = null,
+                Delivered = false
             };
         }
 
@@ -30,8 +31,9 @@ namespace RastreioBot.Api.Utils
                 {
                     TrackingNumber = track.TrackingNumber,
                     Description = track.Description,
-                    Delivered = false,
                     CreateDate = DateTime.Now,
+                    ChatId = track.ChatId,
+                    Delivered = false,
                     LastUpdate = null
                 });
             }

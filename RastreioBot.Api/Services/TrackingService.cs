@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using RastreioBot.Api.Interfaces;
 using RastreioBot.Api.Models.Api.Trackings;
+using RastreioBot.Api.Models.Errors;
 using RastreioBot.Api.Models.Trackings;
 using RastreioBot.Api.Utils;
 
@@ -40,13 +41,9 @@ namespace RastreioBot.Api.Services
 
                 return trackingApi;
             }
-            catch (Exception ex)
+            catch
             {
-                return new
-                {
-                    message = "Ocorreu um erro ao adicionar o rastreamento.",
-                    error = ex.Message
-                };
+                return new ErrorResponse("Ocorreu um erro ao adicionar o rastreamento.");
             }
         }
 
@@ -61,13 +58,9 @@ namespace RastreioBot.Api.Services
 
                 return trackingApiList;
             }
-            catch (Exception ex)
+            catch
             {
-                return new
-                {
-                    message = "Ocorreu um erro ao adicionar os rastreamentos.",
-                    error = ex.Message
-                };
+                return new ErrorResponse("Ocorreu um erro ao adicionar os rastreamentos.");
             }
         }
     }

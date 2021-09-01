@@ -12,6 +12,9 @@ namespace RastreioBot.Api.Models.Trackings
         [Column("description")]
         public string Description { get; set; }
 
+        [Column("chat_id")]
+        public string ChatId { get; set; }
+
         [Column("delivered")]
         public bool Delivered { get; set; }
 
