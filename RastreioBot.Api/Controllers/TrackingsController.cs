@@ -61,8 +61,8 @@ namespace RastreioBot.Api.Controllers
         }
 
         [HttpGet]
-        [Route("search")]
-        public async Task<IActionResult> Search()
+        [Route("searchall")]
+        public async Task<IActionResult> SearchAll()
         {
             if (!ModelState.IsValid)
                 return BadRequest();
