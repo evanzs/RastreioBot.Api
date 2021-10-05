@@ -1,9 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using RastreioBot.Api.Interfaces;
+using RastreioBot.Api.Models.Api.Response;
 using RastreioBot.Api.Models.Api.Trackings;
-using RastreioBot.Api.Models.Errors;
 using RastreioBot.Api.Models.Trackings;
 using RastreioBot.Api.Utils;
 
@@ -20,47 +19,57 @@ namespace RastreioBot.Api.Services
             _uow = uow;
         }
 
-        public async Task<Tracking> GetTrackingAsync(string trackingNumber)
+        public async Task<TrackingRecordResponse> GetTrackingRecordAsync(string trackingNumber)
         {
-            return await _repository.GetTrackingByNumber(trackingNumber);
+            var tracking = await _repository.GetTrackingByNumber(trackingNumber);
+
+            if (tracking.IsNull())
+                return null;
+
+            return tracking.ToResponse();
         }
 
-        public async Task<List<Tracking>> GetTrackingListAsync()
+        public async Task<List<TrackingRecordResponse>> GetTrackingRecordListAsync()
         {
-            return await _repository.GetTrackingList();
+            var trackings = await _repository.GetTrackingList();
+
+            if (trackings.IsNullOrEmpty())
+                return null;
+
+            return trackings.ToResponse();
         }
 
-        public async Task<object> InsertNewTrackingAsync(TrackingApi trackingApi)
+        public async Task<bool> InsertNewTrackingAsync(TrackingApi trackingApi)
         {
             try
             {
-                var tracking = trackingApi.ConvertTrackingApiToTracking();
+                var tracking = trackingApi.ToEntity();
 
                 await _repository.AddTracking(tracking);
                 await _uow.Commit();
 
-                return trackingApi;
+                return true;
             }
             catch
             {
-                return new ErrorResponse("Ocorreu um erro ao adicionar o rastreamento.");
+                return false;
             }
         }
 
-        public async Task<object> InsertNewTrackingListAsync(List<TrackingApi> trackingApiList)
+        public async Task<bool> InsertNewTrackingListAsync(List<TrackingApi> trackingApiList)
         {
             try
             {
-                var trackings = trackingApiList.ConvertTrackingApiListToTrackingList();
+                var trackings = trackingApiList.ToEntity();
 
                 await _repository.AddTrackingList(trackings);
                 await _uow.Commit();
 
-                return trackingApiList;
+                return true;
             }
             catch
             {
-                return new ErrorResponse("Ocorreu um erro ao adicionar os rastreamentos.");
+                return false;
             }
         }
     }

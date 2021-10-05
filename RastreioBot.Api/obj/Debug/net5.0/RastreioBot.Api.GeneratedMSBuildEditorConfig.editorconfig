@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = RastreioBot.Api
-build_property.ProjectDir = c:\Users\matheus\source\repos\RastreioBot.Api\RastreioBot.Api\
+build_property.ProjectDir = c:\dev\RastreioBot.Api\RastreioBot.Api\

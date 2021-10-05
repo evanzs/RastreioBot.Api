@@ -1,18 +1,16 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using RastreioBot.Api.Interfaces.Services;
-using RastreioBot.Api.Models.Errors;
 using RastreioBot.Api.Utils;
 
 namespace RastreioBot.Api.Services
 {
     public class CorreiosService : ICorreiosService
     {
-        public async Task<object> GetTrackings(List<string> trackings)
+        public async Task<string> GetTrackings(List<string> trackings)
         {
             try
             {
@@ -28,7 +26,7 @@ namespace RastreioBot.Api.Services
             }
             catch
             {
-                return new ErrorResponse("Ocorreu um erro ao buscar os rastreamentos.");
+                return null;
             }
         }
 

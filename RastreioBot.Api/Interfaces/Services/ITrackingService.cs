@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using RastreioBot.Api.Models.Api.Response;
 using RastreioBot.Api.Models.Api.Trackings;
 using RastreioBot.Api.Models.Trackings;
 
@@ -7,9 +8,9 @@ namespace RastreioBot.Api.Interfaces
 {
     public interface ITrackingService
     {
-        Task<object> InsertNewTrackingAsync(TrackingApi trackingApi);
-        Task<object> InsertNewTrackingListAsync(List<TrackingApi> trackingApiList);
-        Task<Tracking> GetTrackingAsync(string trackingNumber);
-        Task<List<Tracking>> GetTrackingListAsync();
+        Task<bool> InsertNewTrackingAsync(TrackingApi trackingApi);
+        Task<bool> InsertNewTrackingListAsync(List<TrackingApi> trackingApiList);
+        Task<TrackingRecordResponse> GetTrackingRecordAsync(string trackingNumber);
+        Task<List<TrackingRecordResponse>> GetTrackingRecordListAsync();
     }
 }

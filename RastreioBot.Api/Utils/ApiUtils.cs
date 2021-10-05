@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using RastreioBot.Api.Models.Api.Response;
 using RastreioBot.Api.Models.Api.Trackings;
 using RastreioBot.Api.Models.Trackings;
 
@@ -8,7 +9,7 @@ namespace RastreioBot.Api.Utils
 {
     public static class ApiUtils
     {
-        public static Tracking ConvertTrackingApiToTracking(this TrackingApi trackingApi)
+        public static Tracking ToEntity(this TrackingApi trackingApi)
         {
             return new Tracking
             {
@@ -21,21 +22,13 @@ namespace RastreioBot.Api.Utils
             };
         }
 
-        public static List<Tracking> ConvertTrackingApiListToTrackingList(this List<TrackingApi> trackingApiList)
+        public static List<Tracking> ToEntity(this List<TrackingApi> trackingApiList)
         {
             var trackingList = new List<Tracking>();
 
-            foreach (var track in trackingApiList)
+            foreach (var tracking in trackingApiList)
             {
-                trackingList.Add(new Tracking
-                {
-                    TrackingNumber = track.TrackingNumber,
-                    Description = track.Description,
-                    CreateDate = DateTime.Now,
-                    ChatId = track.ChatId,
-                    Delivered = false,
-                    LastUpdate = null
-                });
+                trackingList.Add(tracking.ToEntity());
             }
 
             return trackingList;
@@ -57,6 +50,28 @@ namespace RastreioBot.Api.Utils
 
                 return reader.ReadToEnd().Replace("@tracking_code_list", trackingString);
             }
+        }
+
+        public static TrackingRecordResponse ToResponse(this Tracking tracking)
+        {
+            return new TrackingRecordResponse(tracking.TrackingNumber,
+                                              tracking.Description,
+                                              tracking.ChatId,
+                                              tracking.Delivered,
+                                              tracking.CreateDate,
+                                              tracking.LastUpdate);
+        }
+
+        public static List<TrackingRecordResponse> ToResponse(this List<Tracking> trackings)
+        {
+            var trackingList = new List<TrackingRecordResponse>();
+
+            foreach (var tracking in trackings)
+            {
+                trackingList.Add(tracking.ToResponse());
+            }
+
+            return trackingList;
         }
     }
 }

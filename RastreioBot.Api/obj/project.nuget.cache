@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3rK08hGl2oVwIgW0PrvoPLdad1O3bGWRDLpG5eoDzgDnqkyJJS9nwvY+L1Yifs3uqSYQYQ6saYKznJLBaKDAeA==",
+  "dgSpecHash": "QENfZPL2bwDuWh4QvEWuBVv2DHc6ASkPOLU48MjM6zJG3v+3Ixn6P1Vy4FI5P2llhlibMb0MoBA3oPTexiqPiw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\matheus\\source\\repos\\RastreioBot.Api\\RastreioBot.Api\\RastreioBot.Api.csproj",
+  "projectFilePath": "C:\\dev\\RastreioBot.Api\\RastreioBot.Api\\RastreioBot.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\matheus\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\matheus\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

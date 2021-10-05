@@ -5,6 +5,6 @@ namespace RastreioBot.Api.Interfaces.Services
 {
     public interface ICorreiosService
     {
-        Task<object> GetTrackings(List<string> trackings);
+        Task<string> GetTrackings(List<string> trackings);
     }
 }

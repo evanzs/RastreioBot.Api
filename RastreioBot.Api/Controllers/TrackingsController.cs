@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
-using System.Net;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using RastreioBot.Api.Interfaces;
 using RastreioBot.Api.Interfaces.Services;
+using RastreioBot.Api.Models.Api.Response;
 using RastreioBot.Api.Models.Api.Trackings;
 using RastreioBot.Api.Models.Trackings;
 
 namespace RastreioBot.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/records")]
     public class TrackingsController : ControllerBase
     {
         private ITrackingService _trackingService;
@@ -34,9 +34,9 @@ namespace RastreioBot.Api.Controllers
             var tracking = new object();
 
             if (tracking_number.IsNullOrWhiteSpace())
-                tracking = GetTrackingListAsync();
+                tracking = await GetTrackingListAsync();
             else
-                tracking = await Task.Factory.StartNew(() => _trackingService.GetTrackingAsync(tracking_number)).Result;
+                tracking = await _trackingService.GetTrackingRecordAsync(tracking_number);
 
             if (tracking.IsNull())
                 return NotFound();
@@ -45,19 +45,18 @@ namespace RastreioBot.Api.Controllers
         }
 
         [HttpPost]
+        [Route("")]
         public async Task<IActionResult> Post([FromBody] List<TrackingApi> trackingApiList)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var tracking = await Task.Factory.StartNew(() => _trackingService.InsertNewTrackingListAsync(trackingApiList)).Result;
+            var tracking = await _trackingService.InsertNewTrackingListAsync(trackingApiList);
 
-            var statusCode = (int)HttpStatusCode.InternalServerError;
+            if (tracking)
+                return StatusCode(201);
 
-            if (tracking is List<TrackingApi>)
-                statusCode = (int)HttpStatusCode.Created;
-
-            return StatusCode(statusCode, tracking);
+            return StatusCode(500);
         }
 
         [HttpGet]
@@ -67,22 +66,19 @@ namespace RastreioBot.Api.Controllers
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var trackings = GetTrackingListAsync().Result;
+            var trackings = await GetTrackingListAsync();
 
             if (trackings.IsNull())
                 return NotFound();
 
-            var trackingNumbers = (trackings as List<Tracking>).Select(t => t.TrackingNumber).ToList();
+            var trackingNumbers = trackings.Select(t => t.TrackingNumber).ToList();
 
-            var result = await Task.Factory.StartNew(() => _correiosService.GetTrackings(trackingNumbers)).Result;
-
-            // if (tracking is List<TrackingApi>)
-            //     statusCode = (int)HttpStatusCode.Created;
+            var result = await _correiosService.GetTrackings(trackingNumbers);
 
             return Ok(result);
         }
 
-        private async Task<object> GetTrackingListAsync()
-            => await Task.Factory.StartNew(() => _trackingService.GetTrackingListAsync()).Result;
+        private async Task<List<TrackingRecordResponse>> GetTrackingListAsync()
+            => await _trackingService.GetTrackingRecordListAsync();
     }
 }
