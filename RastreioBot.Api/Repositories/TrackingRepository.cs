@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using RastreioBot.Api.Data;
 using RastreioBot.Api.Interfaces;
-using RastreioBot.Api.Models.Trackings;
+using RastreioBot.Api.Models.Entities.Trackings;
 
 namespace RastreioBot.Api.Repositories
 {

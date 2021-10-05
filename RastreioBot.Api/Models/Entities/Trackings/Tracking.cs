@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace RastreioBot.Api.Models.Trackings
+namespace RastreioBot.Api.Models.Entities.Trackings
 {
     [Table("tracking")]
     public class Tracking : BaseEntity

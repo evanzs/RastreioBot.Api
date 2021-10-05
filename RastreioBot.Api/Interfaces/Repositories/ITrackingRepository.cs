@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using RastreioBot.Api.Models.Trackings;
+using RastreioBot.Api.Models.Entities.Trackings;
 
 namespace RastreioBot.Api.Interfaces
 {

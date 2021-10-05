@@ -70,9 +70,6 @@ C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\RastreioBot.Api.Assembly
 C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\RastreioBot.Api.csproj.CoreCompileInputs.cache
 C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\RastreioBot.Api.MvcApplicationPartsAssemblyInfo.cs
 C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\RastreioBot.Api.MvcApplicationPartsAssemblyInfo.cache
-C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\RastreioBot.Api.dll
-C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\ref\RastreioBot.Api.dll
-C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\RastreioBot.Api.pdb
 C:\dev\RastreioBot.Api\RastreioBot.Api\bin\Debug\net5.0\appsettings.Development.json
 C:\dev\RastreioBot.Api\RastreioBot.Api\bin\Debug\net5.0\appsettings.json
 C:\dev\RastreioBot.Api\RastreioBot.Api\bin\Debug\net5.0\RastreioBot.Api.exe
@@ -127,4 +124,7 @@ C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\staticwebassets\Rastreio
 C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\scopedcss\bundle\RastreioBot.Api.styles.css
 C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\RastreioBot.Api.RazorTargetAssemblyInfo.cache
 C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\RastreioBot.Api.csproj.CopyComplete
+C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\RastreioBot.Api.dll
+C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\ref\RastreioBot.Api.dll
+C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\RastreioBot.Api.pdb
 C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\RastreioBot.Api.genruntimeconfig.cache

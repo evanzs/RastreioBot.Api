@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using RastreioBot.Api.Interfaces;
 using RastreioBot.Api.Models.Api.Response;
 using RastreioBot.Api.Models.Api.Trackings;
-using RastreioBot.Api.Models.Trackings;
+using RastreioBot.Api.Models.Entities.Trackings;
 using RastreioBot.Api.Utils;
 
 namespace RastreioBot.Api.Services

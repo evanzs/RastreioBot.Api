@@ -1,28 +1,29 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using RastreioBot.Api.Interfaces.Services;
+using RastreioBot.Api.Models.Api.Response;
+using RastreioBot.Api.Models.Correios;
 using RastreioBot.Api.Utils;
 
 namespace RastreioBot.Api.Services
 {
     public class CorreiosService : ICorreiosService
     {
-        public async Task<string> GetTrackings(List<string> trackings)
+        public async Task<List<TrackingResponse>> GetTrackings(List<string> trackings)
         {
             try
             {
-                var response = await ExecuteRequest(trackings.ConvertTrackingSearchListToXml());
+                var response = await ExecuteRequest(trackings.ToXmlRequest());
 
-                if (response.StatusCode.Equals(HttpStatusCode.OK))
-                {
-                    var responseStream = response.GetResponseStream();
-                    return await new StreamReader(responseStream).ReadToEndAsync();
-                }
+                if (response.IsNull())
+                    return null;
 
-                return null;
+                return response.ToResponse();
             }
             catch
             {
@@ -30,12 +31,11 @@ namespace RastreioBot.Api.Services
             }
         }
 
-        private async Task<HttpWebResponse> ExecuteRequest(string xmlRequest)
+        private async Task<CorreiosResponse> ExecuteRequest(string xmlRequest)
         {
             try
             {
-                var url = $"http://webservice.correios.com.br/service/rest/rastro/rastroMobile";
-                var request = (HttpWebRequest)WebRequest.Create(url);
+                var request = (HttpWebRequest)WebRequest.Create("http://webservice.correios.com.br/service/rest/rastro/rastroMobile");
 
                 byte[] bytes;
                 bytes = Encoding.ASCII.GetBytes(xmlRequest);
@@ -48,7 +48,8 @@ namespace RastreioBot.Api.Services
                 requestStream.Write(bytes, 0, bytes.Length);
                 requestStream.Close();
 
-                return (HttpWebResponse)await request.GetResponseAsync();
+                var response = await request.GetResponseAsync();
+                return JsonConvert.DeserializeObject<CorreiosResponse>(response.ReadToEnd());
             }
             catch
             {

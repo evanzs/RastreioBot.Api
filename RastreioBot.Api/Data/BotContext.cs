@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using RastreioBot.Api.Models.Trackings;
+using RastreioBot.Api.Models.Entities.Trackings;
 
 namespace RastreioBot.Api.Data
 {
