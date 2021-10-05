@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using RastreioBot.Api.Data;
 
 namespace RastreioBot.Api.Migrations
@@ -14,37 +15,40 @@ namespace RastreioBot.Api.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "5.0.9");
+                .HasAnnotation("Relational:MaxIdentifierLength", 63)
+                .HasAnnotation("ProductVersion", "5.0.9")
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-            modelBuilder.Entity("RastreioBot.Api.Models.Trackings.Tracking", b =>
+            modelBuilder.Entity("RastreioBot.Api.Models.Entities.Trackings.Tracking", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("id");
+                        .HasColumnType("integer")
+                        .HasColumnName("id")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("ChatId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("text")
                         .HasColumnName("chat_id");
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("create_date");
 
                     b.Property<bool>("Delivered")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("boolean")
                         .HasColumnName("delivered");
 
                     b.Property<string>("Description")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("text")
                         .HasColumnName("description");
 
                     b.Property<DateTime?>("LastUpdate")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_update");
 
                     b.Property<string>("TrackingNumber")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("text")
                         .HasColumnName("tracking_number");
 
                     b.HasKey("Id");
