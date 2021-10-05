@@ -5,14 +5,16 @@ namespace RastreioBot.Api.Models.Api.Response
 {
     public class TrackingResponse
     {
-        public TrackingResponse(string trackingNumber, List<Event> events)
+        public TrackingResponse(string trackingNumber, string description, List<Event> events)
         {
             TrackingNumber = trackingNumber;
+            Description = description;
             Events = events;
         }
 
         public string TrackingNumber { get; private set; }
-        public List<Event> Events { get; private set; }
+        public string Description { get; private set; }
+        public List<Event> Events { get; set; }
     }
 
     public class Event
@@ -28,6 +30,19 @@ namespace RastreioBot.Api.Models.Api.Response
             DestinyLocal = destinyLocal;
             DestinyCity = destinyCity;
             DestinyState = destinyState;
+        }
+
+        public Event(DateTime date, string description, string unityLocal, string unityType, string unityCity, string unityState)
+        {
+            Date = date;
+            Description = description;
+            UnityLocal = unityLocal;
+            UnityType = unityType;
+            UnityCity = unityCity;
+            UnityState = unityState;
+            DestinyLocal = string.Empty;
+            DestinyCity = string.Empty;
+            DestinyState = string.Empty;
         }
 
         public DateTime Date { get; private set; }

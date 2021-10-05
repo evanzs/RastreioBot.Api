@@ -10,7 +10,8 @@ namespace RastreioBot.Api.Interfaces
     {
         Task<bool> InsertNewTrackingAsync(TrackingApi trackingApi);
         Task<bool> InsertNewTrackingListAsync(List<TrackingApi> trackingApiList);
-        Task<TrackingRecordResponse> GetTrackingRecordAsync(string trackingNumber);
+        Task<TrackingRecordResponse> GetTrackingRecordByNumberAsync(string trackingNumber);
+        Task<List<TrackingRecordResponse>> GetTrackingRecordListByChatIdAsync(string chatId);
         Task<List<TrackingRecordResponse>> GetTrackingRecordListAsync();
     }
 }

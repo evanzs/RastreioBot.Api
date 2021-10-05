@@ -6,12 +6,11 @@ using RastreioBot.Api.Interfaces;
 using RastreioBot.Api.Interfaces.Services;
 using RastreioBot.Api.Models.Api.Response;
 using RastreioBot.Api.Models.Api.Trackings;
-using RastreioBot.Api.Models.Entities.Trackings;
 
 namespace RastreioBot.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]/records")]
+    [Route("api/[controller]")]
     public class TrackingsController : ControllerBase
     {
         private ITrackingService _trackingService;
@@ -24,19 +23,38 @@ namespace RastreioBot.Api.Controllers
         }
 
         [HttpGet]
-        [Route("")]
-        [Route("{tracking_number}")]
-        public async Task<IActionResult> Get(string tracking_number = "")
+        [Route("records/chatid/{chat_id}")]
+        public async Task<IActionResult> GetByChatId(string chat_id = "")
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
             var tracking = new object();
 
-            if (tracking_number.IsNullOrWhiteSpace())
-                tracking = await GetTrackingListAsync();
-            else
-                tracking = await _trackingService.GetTrackingRecordAsync(tracking_number);
+            if (chat_id.IsNullOrEmpty())
+                return BadRequest();
+
+            tracking = await _trackingService.GetTrackingRecordListByChatIdAsync(chat_id);
+
+            if (tracking.IsNull())
+                return NotFound();
+
+            return Ok(tracking);
+        }
+
+        [HttpGet]
+        [Route("records/tnumber/{tracking_number}")]
+        public async Task<IActionResult> GetByTrackingNumber(string tracking_number = "")
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var tracking = new object();
+
+            if (tracking_number.IsNullOrEmpty())
+                return BadRequest();
+
+            tracking = await _trackingService.GetTrackingRecordByNumberAsync(tracking_number);
 
             if (tracking.IsNull())
                 return NotFound();
@@ -60,13 +78,16 @@ namespace RastreioBot.Api.Controllers
         }
 
         [HttpGet]
-        [Route("searchall")]
-        public async Task<IActionResult> SearchAll()
+        [Route("{chat_id}")]
+        public async Task<IActionResult> GetTracking(string chat_id = "")
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var trackings = await GetTrackingListAsync();
+            if (chat_id.IsNullOrEmpty())
+                return BadRequest();
+
+            var trackings = await _trackingService.GetTrackingRecordListByChatIdAsync(chat_id);
 
             if (trackings.IsNull())
                 return NotFound();
@@ -77,8 +98,5 @@ namespace RastreioBot.Api.Controllers
 
             return Ok(result);
         }
-
-        private async Task<List<TrackingRecordResponse>> GetTrackingListAsync()
-            => await _trackingService.GetTrackingRecordListAsync();
     }
 }

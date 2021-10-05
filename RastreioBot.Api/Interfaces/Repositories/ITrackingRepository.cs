@@ -7,6 +7,7 @@ namespace RastreioBot.Api.Interfaces
     public interface ITrackingRepository
     {
         Task<Tracking> GetTrackingByNumber(string trackingNumber);
+        Task<List<Tracking>> GetTrackingListByChatId(string chatId);
         Task<List<Tracking>> GetTrackingList();
         Task<Tracking> AddTracking(Tracking tracking);
         Task<List<Tracking>> AddTrackingList(List<Tracking> trackings);

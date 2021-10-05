@@ -19,7 +19,7 @@ namespace RastreioBot.Api.Services
             _uow = uow;
         }
 
-        public async Task<TrackingRecordResponse> GetTrackingRecordAsync(string trackingNumber)
+        public async Task<TrackingRecordResponse> GetTrackingRecordByNumberAsync(string trackingNumber)
         {
             var tracking = await _repository.GetTrackingByNumber(trackingNumber);
 
@@ -37,6 +37,16 @@ namespace RastreioBot.Api.Services
                 return null;
 
             return trackings.ToResponse();
+        }
+
+        public async Task<List<TrackingRecordResponse>> GetTrackingRecordListByChatIdAsync(string chatId)
+        {
+            var tracking = await _repository.GetTrackingListByChatId(chatId);
+
+            if (tracking.IsNull())
+                return null;
+
+            return tracking.ToResponse();
         }
 
         public async Task<bool> InsertNewTrackingAsync(TrackingApi trackingApi)

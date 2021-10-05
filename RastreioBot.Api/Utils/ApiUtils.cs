@@ -73,43 +73,14 @@ namespace RastreioBot.Api.Utils
             return trackingList;
         }
 
-        public static List<TrackingResponse> ToResponse(this CorreiosResponse correiosResponse)
+        private static List<TrackingResponse> OrderByDate(this List<TrackingResponse> trackingList)
         {
-            var response = new List<TrackingResponse>();
-
-            foreach (var obj in correiosResponse.Objeto)
+            foreach (var tracking in trackingList)
             {
-                var events = new List<Event>();
-
-                foreach (var ev in obj.Evento)
-                {
-                    var date = ConvertStringDateToDateTime(ev.Data, ev.Hora);
-                    var destiny = ev.Destino.FirstOrDefault();
-
-                    events.Add(new Event(date, ev.Descricao, ev.Unidade.Local,
-                                         ev.Unidade.Tipounidade, ev.Unidade.Cidade,
-                                         ev.Unidade.Uf, destiny.Local,
-                                         destiny.Cidade, destiny.Uf));
-                }
-
-                response.Add(new TrackingResponse(obj.Numero, events));
+                tracking.Events = tracking.Events.OrderByDescending(d => d.Date).ToList();
             }
 
-            return response;
-        }
-
-        private static DateTime ConvertStringDateToDateTime(string date, string hour)
-        {
-            var dateArray = date.Split("/");
-            var hourArray = hour.Split(":");
-
-            var day = dateArray[0].ToInt32();
-            var month = dateArray[1].ToInt32();
-            var year = dateArray[2].ToInt32();
-            var hours = hourArray[0].ToInt32();
-            var minutes = hourArray[1].ToInt32();
-
-            return new DateTime(year, month, day, hours, minutes, 0);
+            return trackingList;
         }
     }
 }

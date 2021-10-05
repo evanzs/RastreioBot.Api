@@ -14,6 +14,7 @@ namespace RastreioBot.Api.Models.Api.Trackings
         [MaxLength(30)]
         public string Description { get; set; }
 
+        [Required(ErrorMessage = "Chat ID is required!")]
         [JsonPropertyName("chat_id")]
         public string ChatId { get; set; }
     }

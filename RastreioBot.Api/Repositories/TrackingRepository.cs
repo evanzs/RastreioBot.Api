@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using RastreioBot.Api.Data;
@@ -33,5 +34,8 @@ namespace RastreioBot.Api.Repositories
 
         public async Task<List<Tracking>> GetTrackingList()
             => await _context.Trackings.ToListAsync();
+
+        public async Task<List<Tracking>> GetTrackingListByChatId(string chatId)
+            => await _context.Trackings.Where(c => c.ChatId.Equals(chatId)).ToListAsync();
     }
 }
