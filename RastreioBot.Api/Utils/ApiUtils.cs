@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using RastreioBot.Api.Models.Api.Response;
 using RastreioBot.Api.Models.Api.Trackings;
@@ -38,17 +37,15 @@ namespace RastreioBot.Api.Utils
 
         public static string ToXmlRequest(this List<string> trackingList)
         {
-            using (var reader = new StreamReader(Directory.GetCurrentDirectory() + @"\Content\xml_file.xml"))
+            var xml = XmlRequestModel.XmlModel;
+            var trackingString = string.Empty;
+
+            for (int i = 0; i < trackingList.Count; i++)
             {
-                var trackingString = string.Empty;
-
-                for (int i = 0; i < trackingList.Count; i++)
-                {
-                    trackingString += trackingList[i];
-                }
-
-                return reader.ReadToEnd().Replace("@tracking_code_list", trackingString);
+                trackingString += trackingList[i];
             }
+
+            return xml.Replace("@tracking_code_list", trackingString);
         }
 
         public static TrackingRecordResponse ToResponse(this Tracking tracking)
