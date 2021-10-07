@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RastreioBot.Api.Interfaces;
 using RastreioBot.Api.Interfaces.Services;
@@ -24,6 +25,9 @@ namespace RastreioBot.Api.Controllers
 
         [HttpGet]
         [Route("records/chatid/{chat_id}")]
+        [ProducesResponseType(typeof(List<TrackingRecordResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(object), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(object), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetByChatId(string chat_id = "")
         {
             if (!ModelState.IsValid)
@@ -44,6 +48,9 @@ namespace RastreioBot.Api.Controllers
 
         [HttpGet]
         [Route("records/tnumber/{tracking_number}")]
+        [ProducesResponseType(typeof(TrackingRecordResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(object), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(object), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetByTrackingNumber(string tracking_number = "")
         {
             if (!ModelState.IsValid)
@@ -64,6 +71,9 @@ namespace RastreioBot.Api.Controllers
 
         [HttpPost]
         [Route("")]
+        [ProducesResponseType(typeof(object), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(object), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(object), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Post([FromBody] List<TrackingApi> trackingApiList)
         {
             if (!ModelState.IsValid)
@@ -79,6 +89,9 @@ namespace RastreioBot.Api.Controllers
 
         [HttpGet]
         [Route("{chat_id}")]
+        [ProducesResponseType(typeof(List<TrackingResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(object), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(object), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetTracking(string chat_id = "")
         {
             if (!ModelState.IsValid)

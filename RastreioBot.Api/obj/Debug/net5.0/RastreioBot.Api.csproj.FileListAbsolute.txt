@@ -63,13 +63,6 @@ C:\Users\matheus\source\repos\RastreioBot.Api\RastreioBot.Api\bin\Debug\net5.0\r
 C:\Users\matheus\source\repos\RastreioBot.Api\RastreioBot.Api\bin\Debug\net5.0\runtimes\win-x86\native\sni.dll
 C:\Users\matheus\source\repos\RastreioBot.Api\RastreioBot.Api\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\matheus\source\repos\RastreioBot.Api\RastreioBot.Api\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
-C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\RastreioBot.Api.csproj.AssemblyReference.cache
-C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\RastreioBot.Api.GeneratedMSBuildEditorConfig.editorconfig
-C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\RastreioBot.Api.AssemblyInfoInputs.cache
-C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\RastreioBot.Api.AssemblyInfo.cs
-C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\RastreioBot.Api.csproj.CoreCompileInputs.cache
-C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\RastreioBot.Api.MvcApplicationPartsAssemblyInfo.cs
-C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\RastreioBot.Api.MvcApplicationPartsAssemblyInfo.cache
 C:\dev\RastreioBot.Api\RastreioBot.Api\bin\Debug\net5.0\appsettings.Development.json
 C:\dev\RastreioBot.Api\RastreioBot.Api\bin\Debug\net5.0\appsettings.json
 C:\dev\RastreioBot.Api\RastreioBot.Api\bin\Debug\net5.0\RastreioBot.Api.exe
@@ -91,6 +84,8 @@ C:\dev\RastreioBot.Api\RastreioBot.Api\bin\Debug\net5.0\Microsoft.Extensions.Dep
 C:\dev\RastreioBot.Api\RastreioBot.Api\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
 C:\dev\RastreioBot.Api\RastreioBot.Api\bin\Debug\net5.0\Microsoft.OpenApi.dll
 C:\dev\RastreioBot.Api\RastreioBot.Api\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\dev\RastreioBot.Api\RastreioBot.Api\bin\Debug\net5.0\Npgsql.dll
+C:\dev\RastreioBot.Api\RastreioBot.Api\bin\Debug\net5.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\dev\RastreioBot.Api\RastreioBot.Api\bin\Debug\net5.0\SQLitePCLRaw.batteries_v2.dll
 C:\dev\RastreioBot.Api\RastreioBot.Api\bin\Debug\net5.0\SQLitePCLRaw.nativelibrary.dll
 C:\dev\RastreioBot.Api\RastreioBot.Api\bin\Debug\net5.0\SQLitePCLRaw.core.dll
@@ -119,6 +114,13 @@ C:\dev\RastreioBot.Api\RastreioBot.Api\bin\Debug\net5.0\runtimes\win-x64\native\
 C:\dev\RastreioBot.Api\RastreioBot.Api\bin\Debug\net5.0\runtimes\win-x86\native\e_sqlite3.dll
 C:\dev\RastreioBot.Api\RastreioBot.Api\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\dev\RastreioBot.Api\RastreioBot.Api\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\RastreioBot.Api.csproj.AssemblyReference.cache
+C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\RastreioBot.Api.GeneratedMSBuildEditorConfig.editorconfig
+C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\RastreioBot.Api.AssemblyInfoInputs.cache
+C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\RastreioBot.Api.AssemblyInfo.cs
+C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\RastreioBot.Api.csproj.CoreCompileInputs.cache
+C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\RastreioBot.Api.MvcApplicationPartsAssemblyInfo.cs
+C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\RastreioBot.Api.MvcApplicationPartsAssemblyInfo.cache
 C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\staticwebassets\RastreioBot.Api.StaticWebAssets.Manifest.cache
 C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\staticwebassets\RastreioBot.Api.StaticWebAssets.xml
 C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\scopedcss\bundle\RastreioBot.Api.styles.css
@@ -128,5 +130,3 @@ C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\RastreioBot.Api.dll
 C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\ref\RastreioBot.Api.dll
 C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\RastreioBot.Api.pdb
 C:\dev\RastreioBot.Api\RastreioBot.Api\obj\Debug\net5.0\RastreioBot.Api.genruntimeconfig.cache
-C:\dev\RastreioBot.Api\RastreioBot.Api\bin\Debug\net5.0\Npgsql.dll
-C:\dev\RastreioBot.Api\RastreioBot.Api\bin\Debug\net5.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
